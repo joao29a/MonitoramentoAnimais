@@ -2,10 +2,17 @@
 #define ESPECIE_H
 
 typedef struct especie{
-	int identificador;
-	char *nome;
-	char *nomePop;
+	int identificadorEspecie;
+	char *nomeCientifico;
+	char *nomePopular;
 	char *descricao;
 }Especie;
+
+//registros de tamanho váriavel.
+void inserirEspecie();
+
+void buscarEspecie(); //ID
+
+void removerEspecie();
 
 #endif
