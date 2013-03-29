@@ -8,6 +8,10 @@ typedef struct especie{
 	char *descricao;
 }Especie;
 
+//extern char *arqEspecie;
+
+#define MAX 1024
+
 //registros de tamanho váriavel.
 void inserirEspecie();
 

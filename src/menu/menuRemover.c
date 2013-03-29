@@ -33,7 +33,7 @@ void menuRemover(){
 	while (opcao!=0){
 		printf("Sistema de informação para monitoramento de animais silvestres.\n");
 		printf("### Remover ###\n");
-		printf("1 - Especie\n");
+		printf("1 - Espécie\n");
 		printf("2 - Indivíduo\n");
 		printf("3 - Captura\n");
 		printf("0 - Voltar\n");

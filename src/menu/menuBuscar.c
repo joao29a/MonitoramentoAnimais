@@ -9,7 +9,12 @@ void opcaoBuscar(int escolha){
 	system("clear");
 	switch(escolha){
 		case 1:
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Buscar Espécie ###\n");
 			buscarEspecie();
+			printf("Busca concluída, pressione enter para voltar...");
+			while (getchar()!='\r' && getchar()!='\n');
+			system("clear");
 			break;
 		case 2:
 			buscarIndividuo();
@@ -33,7 +38,7 @@ void menuBuscar(){
 	while (opcao!=0){
 		printf("Sistema de informação para monitoramento de animais silvestres.\n");
 		printf("### Buscar ###\n");
-		printf("1 - Especie\n");
+		printf("1 - Espécie\n");
 		printf("2 - Indivíduo\n");
 		printf("3 - Captura\n");
 		printf("0 - Voltar\n");
