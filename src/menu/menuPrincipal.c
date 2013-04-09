@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../hdr/menuPrincipal.h"
 #include "../hdr/menuInserir.h"
 #include "../hdr/menuBuscar.h"
 #include "../hdr/menuRemover.h"
+#include "../hdr/buffer.h"
 
 void opcaoPrincipal(int escolha){
 	system("clear");
@@ -22,7 +24,7 @@ void opcaoPrincipal(int escolha){
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			while (getchar()!='\n');
+			//while (getchar()!='\n');
 			break;	
 	}
 }
@@ -37,7 +39,14 @@ void menuPrincipal(){
 		printf("3 - Remover\n");
 		printf("0 - Sair\n");
 		printf("Opção: ");
-		scanf("%d",&opcao);
+		char option[BUFFER_SZ];
+		fgets(option,BUFFER_SZ,stdin);
+		sscanf(option,"%[^\n]",option);
+		if (strlen(option) == 1){
+			opcao = atoi(option);
+		}
+		else
+			opcao = -1;
 		opcaoPrincipal(opcao);
 	}
 }

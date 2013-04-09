@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../hdr/menuInserir.h"
 #include "../hdr/especie.h"
 #include "../hdr/individuo.h"
 #include "../hdr/captura.h"
+#include "../hdr/buffer.h"
 
 void opcaoInserir(int escolha){
 	system("clear");
@@ -12,7 +14,7 @@ void opcaoInserir(int escolha){
 			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Inserir Espécie ###\n");
 			inserirEspecie();
-			printf("Dados inseridos com sucesso, pressione enter para continuar...");
+			printf("\nDados inseridos com sucesso, pressione enter para continuar...");
 			while (getchar()!='\n'){}
 			system("clear");
 			break;
@@ -31,7 +33,7 @@ void opcaoInserir(int escolha){
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			while (getchar()!='\n');
+			//while (getchar()!='\n');
 			break;	
 	}
 }
@@ -47,7 +49,13 @@ void menuInserir(){
 		printf("3 - Captura\n");
 		printf("0 - Voltar\n");
 		printf("Opção: ");
-		scanf("%d",&opcao);
+		char option[BUFFER_SZ];
+		fgets(option,BUFFER_SZ,stdin);
+		sscanf(option,"%[^\n]",option);
+		if (strlen(option) == 1)
+			opcao = atoi(option);
+		else
+			opcao = -1;
 		opcaoInserir(opcao);
 	}
 }

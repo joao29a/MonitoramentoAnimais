@@ -10,12 +10,18 @@ typedef struct especie{
 
 //extern char *arqEspecie;
 
-#define MAX 1024
+void inserirDado(char *tipo, char *dado);
+
+void imprimirEspecie(int pos);
+
+FILE* abrirArquivoEspecie(char *tipo);
+
+FILE* abrirArquivoPosEspecie(char *tipo);
 
 //registros de tamanho váriavel.
 void inserirEspecie();
 
-void buscarEspecie(); //ID
+int buscarEspecie(); //ID
 
 void removerEspecie();
 
