@@ -5,7 +5,7 @@
 #include "../hdr/menuInserir.h"
 #include "../hdr/menuBuscar.h"
 #include "../hdr/menuRemover.h"
-#include "../hdr/buffer.h"
+#include "../hdr/manipular.h"
 
 void opcaoPrincipal(int escolha){
 	system("clear");

@@ -5,7 +5,7 @@
 #include "../hdr/especie.h"
 #include "../hdr/individuo.h"
 #include "../hdr/captura.h"
-#include "../hdr/buffer.h"
+#include "../hdr/manipular.h"
 
 void opcaoBuscar(int escolha){
 	system("clear");
@@ -13,13 +13,18 @@ void opcaoBuscar(int escolha){
 		case 1:
 			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Buscar Espécie ###\n");
-			imprimirEspecie(buscarEspecie());
+			imprimirDado(buscarEspecie(),especie,"Espécie");
 			printf("\nBusca concluída, pressione enter para voltar...");
 			while (getchar()!='\n');
 			system("clear");
 			break;
 		case 2:
-			buscarIndividuo();
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Buscar Indivíduo ###\n");
+			imprimirDado(buscarIndividuo(),individuo,"Indivíduo");
+			printf("\nBusca concluída, pressione enter para voltar...");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 3:
 			buscarCaptura();

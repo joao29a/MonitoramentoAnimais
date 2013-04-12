@@ -5,7 +5,7 @@
 #include "../hdr/especie.h"
 #include "../hdr/individuo.h"
 #include "../hdr/captura.h"
-#include "../hdr/buffer.h"
+#include "../hdr/manipular.h"
 
 void opcaoInserir(int escolha){
 	system("clear");
@@ -15,13 +15,16 @@ void opcaoInserir(int escolha){
 			printf("### Inserir Espécie ###\n");
 			inserirEspecie();
 			printf("\nDados inseridos com sucesso, pressione enter para continuar...");
-			while (getchar()!='\n'){}
+			while (getchar()!='\n');
 			system("clear");
 			break;
 		case 2:
-			//printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Inserir Indivíduo ###\n");
 			inserirIndividuo();
+			printf("\nDados inseridos com sucesso, pressione enter para continuar...");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 3:
 			//printf("Sistema de informação para monitoramento de animais silvestres.\n");

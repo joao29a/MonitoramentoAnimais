@@ -5,7 +5,7 @@
 #include "../hdr/especie.h"
 #include "../hdr/individuo.h"
 #include "../hdr/captura.h"
-#include "../hdr/buffer.h"
+#include "../hdr/manipular.h"
 
 void opcaoRemover(int escolha){
 	system("clear");

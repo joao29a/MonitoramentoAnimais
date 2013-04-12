@@ -11,7 +11,7 @@ typedef struct individuo{
 
 void inserirIndividuo();
 
-void buscarIndividuo();
+int buscarIndividuo();
 
 void removerIndividuo();
 
