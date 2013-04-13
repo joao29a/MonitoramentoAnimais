@@ -59,3 +59,14 @@ void verificarCaptura(){
 	verificarPasta(pastaCaptura);
 	verificarArquivo(captura);
 }
+
+int verificar_qtd_especie(){
+	FILE *arquivo = abrirArquivo(especiePos,"r");
+	char linha[BUFFER_SZ];
+	while (fgets(linha,BUFFER_SZ,arquivo)!=NULL){
+		sscanf(linha,"%*s %[^\n]",linha);
+		if (strcmp(linha,"#INSERIDO#")==0)
+			return 1;
+	}
+	return 0;
+}

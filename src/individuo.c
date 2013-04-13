@@ -2,15 +2,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hdr/individuo.h"
+#include "hdr/especie.h"
 #include "hdr/manipular.h"
 
 void inserirIndividuo(){
-	char idEspecie[BUFFER_SZ];
 	char idIndividuo[BUFFER_SZ];
+	char idEspecie[BUFFER_SZ];
 	char sexo[BUFFER_SZ];
 
-	inserirDado("ID Indivíduo: ",idEspecie);
-	inserirDado("ID Espécie: ",idIndividuo);
+	int verificarId;
+	do{
+		inserirDado("ID Indivíduo: ",idIndividuo);
+		verificarId = buscarIndividuo(idIndividuo);
+	} while (verificarId!=-1);
+
+	int idNumberInd = atoi(idIndividuo);
+	sprintf(idIndividuo,"%d",idNumberInd);
+
+	do{
+		inserirDado("ID Espécie: ",idEspecie);
+		verificarId = buscarEspecie(idEspecie);
+	} while (verificarId==-1);
+
+	int idNumberEsp = atoi(idEspecie);
+	sprintf(idEspecie,"%d",idNumberEsp);
+	
 	inserirDado("Sexo: ",sexo);
 
 	FILE *arquivo = abrirArquivo(individuo,"r+");
@@ -18,11 +34,11 @@ void inserirIndividuo(){
 	
 	char dados[BUFFER_SZ];
 	strcpy(dados,"id indivíduo = ");
-	strcat(dados,idEspecie);
+	strcat(dados,idIndividuo);
 	strcat(dados,"\n");
 	
 	strcat(dados,"id espécie = ");
-	strcat(dados,idIndividuo);
+	strcat(dados,idEspecie);
 	strcat(dados,"\n");
 	
 	strcat(dados,"sexo = ");
@@ -35,10 +51,7 @@ void inserirIndividuo(){
 	fclose(arquivo);
 }
 
-int buscarIndividuo(){
-	char id[BUFFER_SZ];
-	inserirDado("ID indivíduo: ",id);
-	
+int buscarIndividuo(char *id){
 	FILE *arquivo = abrirArquivo(individuo,"r");
 
 	int idNumber = atoi(id);
@@ -60,7 +73,9 @@ int buscarIndividuo(){
 }
 
 void removerIndividuo(){
-	int pos = buscarIndividuo();
+	char id[BUFFER_SZ];
+	inserirDado("ID Indivíduo: ",id);
+	int pos = buscarIndividuo(id);
 	char *removed="-";
 	if (pos!=-1){
 		FILE *arquivo = abrirArquivo(individuo,"r+");
@@ -73,6 +88,7 @@ void removerIndividuo(){
 		posArq-=2;
 		fseek(arquivo,posArq,SEEK_SET);
 		fwrite(removed,1,1,arquivo);
+		printf("Indivíduo removido!\n");
 		fclose(arquivo);
 	}
 	else printf("Indivíduo não encontrado(a)\n");

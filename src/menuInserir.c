@@ -21,8 +21,11 @@ void opcaoInserir(int escolha){
 		case 2:
 			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Inserir Indivíduo ###\n");
-			inserirIndividuo();
-			printf("\nDados inseridos com sucesso, pressione enter para continuar...");
+			if (verificar_qtd_especie()){
+				inserirIndividuo();
+				printf("\nDados inseridos com sucesso, pressione enter para continuar...");
+			} else
+				printf("Insira espécie antes para adicionar algum indivíduo...");
 			while (getchar()!='\n');
 			system("clear");
 			break;

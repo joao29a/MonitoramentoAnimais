@@ -9,11 +9,13 @@
 
 void opcaoBuscar(int escolha){
 	system("clear");
+	char id[BUFFER_SZ];
 	switch(escolha){
 		case 1:
 			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Buscar Espécie ###\n");
-			imprimirDado(buscarEspecie(),especie,"Espécie");
+			inserirDado("ID: ",id);
+			imprimirDado(buscarEspecie(id),especie,"Espécie");
 			printf("\nBusca concluída, pressione enter para voltar...");
 			while (getchar()!='\n');
 			system("clear");
@@ -21,7 +23,8 @@ void opcaoBuscar(int escolha){
 		case 2:
 			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Buscar Indivíduo ###\n");
-			imprimirDado(buscarIndividuo(),individuo,"Indivíduo");
+			inserirDado("ID: ",id);
+			imprimirDado(buscarIndividuo(id),individuo,"Indivíduo");
 			printf("\nBusca concluída, pressione enter para voltar...");
 			while (getchar()!='\n');
 			system("clear");

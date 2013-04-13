@@ -4,7 +4,7 @@
 //registros de tamanho váriavel.
 void inserirEspecie();
 
-int buscarEspecie(); //ID
+int buscarEspecie(char *id); //ID
 
 void removerEspecie();
 

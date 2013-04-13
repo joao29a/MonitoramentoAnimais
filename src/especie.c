@@ -9,8 +9,15 @@ void inserirEspecie(){
 	char nomeCientifico[BUFFER_SZ];
 	char nomePopular[BUFFER_SZ];
 	char descricao[BUFFER_SZ];
+	
+	int verificarId;
+	do{
+		inserirDado("ID: ",id);
+		verificarId = buscarEspecie(id);
+	}while (verificarId!=-1);
 
-	inserirDado("ID: ",id);
+	int idNumber = atoi(id);
+
 	inserirDado("Nome científico: ",nomeCientifico);
 	inserirDado("Nome popular: ",nomePopular);
 	inserirDado("Descrição: ",descricao);
@@ -18,7 +25,7 @@ void inserirEspecie(){
 	FILE *arquivo = abrirArquivo(especie,"r+");
 	fseek(arquivo,0,SEEK_END);
 	int pos = ftell(arquivo);
-	fprintf(arquivo,"id = %s\nnome científico = %s\nnome popular = %s\ndescrição = %s\n#\n",id,nomeCientifico,nomePopular,descricao);
+	fprintf(arquivo,"id = %d\nnome científico = %s\nnome popular = %s\ndescrição = %s\n#\n",idNumber,nomeCientifico,nomePopular,descricao);
 	fclose(arquivo);
 
 	FILE *arquivoPos = abrirArquivo(especiePos,"r+");
@@ -29,9 +36,7 @@ void inserirEspecie(){
 }
 
 
-int buscarEspecie(){
-	char id[BUFFER_SZ];
-	inserirDado("ID: ",id);
+int buscarEspecie(char *id){
 	int idNumber = atoi(id);
 	FILE *arquivo = abrirArquivo(especie,"r");
 	FILE *arquivoPos = abrirArquivo(especiePos,"r");
@@ -56,7 +61,9 @@ int buscarEspecie(){
 }
 
 void removerEspecie(){
-	int pos = buscarEspecie();
+	char id[BUFFER_SZ];
+	inserirDado("ID: ",id);
+	int pos = buscarEspecie(id);
 	if (pos != -1){
 		FILE *arquivoPos = abrirArquivo(especiePos,"r+");
 		char buffer[BUFFER_SZ];
