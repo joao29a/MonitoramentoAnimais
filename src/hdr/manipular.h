@@ -6,14 +6,16 @@
 #define BUFFER_SZ 1024
 #define TAM_REG 50
 
-#define pastaEspecie "EspecieArq/"
+#define arquivos "Arquivos/"
+
+#define pastaEspecie arquivos"EspecieArq/"
 #define especie pastaEspecie"especie.txt"
 #define especiePos pastaEspecie"especiePos.txt"
 
-#define pastaIndividuo "IndividuoArq/"
+#define pastaIndividuo arquivos"IndividuoArq/"
 #define individuo pastaIndividuo"individuo.txt"
 
-#define pastaCaptura "CapturaArq/"
+#define pastaCaptura arquivos"CapturaArq/"
 #define captura pastaCaptura"captura.dat"
 
 void inserirDado(char *tipo, char *dado);

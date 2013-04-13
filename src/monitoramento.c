@@ -2,6 +2,7 @@
 #include "hdr/menuPrincipal.h"
 
 int main(){
+	verificarPasta(arquivos);
 	verificarEspecie();
 	verificarIndividuo();
 	verificarCaptura();
