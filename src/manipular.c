@@ -70,3 +70,18 @@ int verificar_qtd_especie(){
 	}
 	return 0;
 }
+
+int verificar_qtd_individuo(){
+	FILE *arquivo = abrirArquivo(individuo,"r");
+	char linha[BUFFER_SZ];
+	int somaPos = 0;
+	while (fgets(linha,BUFFER_SZ,arquivo)!=NULL){
+		int id = -1;
+		sscanf(linha,"%*[^0-9] %d",&id);
+		if (id != -1)
+			return 1;
+		somaPos+=TAM_REG;
+		fseek(arquivo,somaPos,SEEK_SET);
+	}
+	return 0;
+}

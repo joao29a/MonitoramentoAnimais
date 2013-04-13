@@ -36,4 +36,6 @@ void verificarCaptura();
 
 int verificar_qtd_especie();
 
+int verificar_qtd_individuo();
+
 #endif

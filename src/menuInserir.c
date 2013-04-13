@@ -30,9 +30,16 @@ void opcaoInserir(int escolha){
 			system("clear");
 			break;
 		case 3:
-			//printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Inserir Captura ###\n");
-			inserirCaptura();
+			if (verificar_qtd_especie() && verificar_qtd_individuo()){
+				inserirCaptura();
+			} else if (!verificar_qtd_especie())
+				printf("Insira espécie antes para adicionar algum indivíduo...");
+			else
+				printf("Insira indivíduo antes para adicionar algum indivíduo...");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 0:
 			printf("Voltando...\n");
