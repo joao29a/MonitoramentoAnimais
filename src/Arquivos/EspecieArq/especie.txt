@@ -1,5 +1,0 @@
-id = 0
-nome científico = alocs
-nome popular = sss
-descrição = ssss
-#
