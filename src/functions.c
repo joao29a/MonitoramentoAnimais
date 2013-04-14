@@ -79,10 +79,12 @@ int verificar_qtd_individuo(){
 		int id = -1;
 		sscanf(linha,"%*[^0-9] %d",&id);
 		if (id != -1)
+			fclose(arquivo);
 			return 1;
 		somaPos+=TAM_REG;
 		fseek(arquivo,somaPos,SEEK_SET);
 	}
+	fclose(arquivo);
 	return 0;
 }
 
@@ -94,9 +96,11 @@ int verificar_individuo_removido(){
 		int id = -1;
 		sscanf(linha,"%*[^0-9] %d",&id);
 		if (id == -1)
+			fclose(arquivo);
 			return somaPos;
 		somaPos+=TAM_REG;
 		fseek(arquivo,somaPos,SEEK_SET);
 	}
+	fclose(arquivo);
 	return somaPos;
 }
