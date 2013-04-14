@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hdr/especie.h"
-#include "hdr/manipular.h"
+#include "hdr/functions.h"
 
 void inserirEspecie(){
 	char id[BUFFER_SZ];

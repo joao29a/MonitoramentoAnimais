@@ -3,7 +3,7 @@
 #include <string.h>
 #include "hdr/individuo.h"
 #include "hdr/especie.h"
-#include "hdr/manipular.h"
+#include "hdr/functions.h"
 
 void inserirIndividuo(){
 	char idIndividuo[BUFFER_SZ];
@@ -27,10 +27,19 @@ void inserirIndividuo(){
 	int idNumberEsp = atoi(idEspecie);
 	sprintf(idEspecie,"%d",idNumberEsp);
 	
-	inserirDado("Sexo: ",sexo);
+	int encontrou;
+	do{
+		encontrou = 0;
+		inserirDado("Sexo: ",sexo);
+		if (strlen(sexo) == 1){
+			int a = sexo[0];
+			if (a == 77 || a == 70 || a == 102 || a == 109)
+				encontrou = 1;
+		}
+	} while (strlen(sexo) > 1 || !encontrou);
 
 	FILE *arquivo = abrirArquivo(individuo,"r+");
-	fseek(arquivo,0,SEEK_END);
+	fseek(arquivo,verificar_individuo_removido(),SEEK_SET);
 	
 	char dados[BUFFER_SZ];
 	strcpy(dados,"id indivíduo = ");

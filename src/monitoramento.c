@@ -1,4 +1,4 @@
-#include "hdr/manipular.h"
+#include "hdr/functions.h"
 #include "hdr/menuPrincipal.h"
 
 int main(){
