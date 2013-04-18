@@ -1,0 +1,25 @@
+id = 0
+nome científico = eme,owmeiow
+nome popular = meowmewoimew
+descrição = meoiwmeiowme
+#
+id = 1
+nome científico = wmowme
+nome popular = emiowmeoiwem
+descrição = mewoimew
+#
+id = 2
+nome científico = mewoiqme[]
+nome popular = mewqoienmw
+descrição = emnqwoienwq
+#
+id = -1
+nome científico = e,owpmoewmd
+nome popular = mdeopdmedmop
+descrição = dmoepwmdwe
+#
+id = 123
+nome científico = dmpwqomd
+nome popular = mdqwiomdwoq
+descrição = mdoiwqmdw
+#
