@@ -1,30 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hdr/menuPrincipal.h"
 #include "hdr/menuImportar.h"
-#include "hdr/menuInserir.h"
-#include "hdr/menuBuscar.h"
-#include "hdr/menuRemover.h"
 #include "hdr/functions.h"
 
-void opcaoPrincipal(int escolha){
+void opcaoImportar(int escolha){
 	system("clear");
 	switch(escolha){
 		case 1:
-			menuInserir();
+			anexarFinal();
 			break;
 		case 2:
-			menuBuscar();
-			break;
-		case 3:
-			menuRemover();
-			break;
-		case 4:
-			menuImportar();
+			reescreverCaptura();
 			break;
 		case 0:
-			printf("Saindo...\n");
+			printf("Voltando...\n");
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
@@ -33,21 +23,20 @@ void opcaoPrincipal(int escolha){
 	}
 }
 
-void menuPrincipal(){
+void menuImportar(){
 	system("clear");
 	int opcao;
 	do{
 		opcao=-1;
 		printf("Sistema de informação para monitoramento de animais silvestres.\n");
-		printf("1 - Inserir\n");
-		printf("2 - Buscar\n");
-		printf("3 - Remover\n");
-		printf("4 - Importar Capturas\n");
-		printf("0 - Sair\n");
+		printf("### Importar Captura ###\n");
+		printf("1 - Anexar no final do arquivo.\n");
+		printf("2 - Reescrever arquivo.\n");
+		printf("0 - Voltar\n");
 		printf("Opção: ");
 		char option[BUFFER_SZ];
 		fgets(option,BUFFER_SZ,stdin);
 		sscanf(option,"%d",&opcao);
-		opcaoPrincipal(opcao);
+		opcaoImportar(opcao);
 	} while (opcao!=0);
 }

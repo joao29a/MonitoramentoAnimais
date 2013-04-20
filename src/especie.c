@@ -28,11 +28,9 @@ void inserirEspecie(){
 	fprintf(arquivo,"id = %d\nnome científico = %s\nnome popular = %s\ndescrição = %s\n#\n",idNumber,nomeCientifico,nomePopular,descricao);
 	fclose(arquivo);
 
-	FILE *arquivoPos = abrirArquivo(especiePos,"r+");
-	fseek(arquivoPos,0,SEEK_END);
-	fprintf(arquivoPos,"%d #INSERIDO#\n",pos);
+	FILE *arquivoPos = abrirArquivo(especiePos,"a+");
+	salvarPos(arquivoPos,pos);
 	fclose(arquivoPos);
-
 }
 
 

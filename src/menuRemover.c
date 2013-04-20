@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hdr/menuRemover.h"
+#include "hdr/menuImportar.h"
 #include "hdr/especie.h"
 #include "hdr/individuo.h"
 #include "hdr/captura.h"
@@ -27,14 +28,21 @@ void opcaoRemover(int escolha){
 			system("clear");
 			break;
 		case 3:
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Remover Captura ###\n");
 			removerCaptura();
+			printf("\nPressione enter para voltar...");
+			while (getchar()!='\n');
+			system("clear");
+			break;
+		case 4:
+			menuImportar();
 			break;
 		case 0:
 			printf("Voltando...\n");
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			//while (getchar()!='\n');
 			break;	
 	}
 }
@@ -49,6 +57,7 @@ void menuRemover(){
 		printf("1 - Espécie\n");
 		printf("2 - Indivíduo\n");
 		printf("3 - Captura\n");
+		printf("4 - Importar Capturas\n");
 		printf("0 - Voltar\n");
 		printf("Opção: ");
 		char option[BUFFER_SZ];

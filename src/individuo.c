@@ -16,7 +16,7 @@ void inserirIndividuo(){
 		verificarId = buscarIndividuo(idIndividuo);
 	} while (verificarId!=-1);
 
-	int idNumberInd = atoi(idIndividuo);
+	int idNumberInd = atoi (idIndividuo);
 	sprintf(idIndividuo,"%d",idNumberInd);
 
 	do{

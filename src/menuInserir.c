@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hdr/menuInserir.h"
+#include "hdr/menuImportar.h"
 #include "hdr/especie.h"
 #include "hdr/individuo.h"
 #include "hdr/captura.h"
@@ -32,21 +33,21 @@ void opcaoInserir(int escolha){
 		case 3:
 			printf("Sistema de informação para monitoramento de animais silvestres.\n");
 			printf("### Inserir Captura ###\n");
-			if (verificar_qtd_especie() && verificar_qtd_individuo()){
+			if (verificar_qtd_individuo())
 				inserirCaptura();
-			} else if (!verificar_qtd_especie())
-				printf("Insira espécie antes para adicionar algum indivíduo...");
 			else
-				printf("Insira indivíduo antes para adicionar algum indivíduo...");
+				printf("Insira indivíduo antes para adicionar alguma captura...");
 			while (getchar()!='\n');
 			system("clear");
+			break;
+		case 4:
+			menuImportar();
 			break;
 		case 0:
 			printf("Voltando...\n");
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			//while (getchar()!='\n');
 			break;	
 	}
 }
@@ -61,6 +62,7 @@ void menuInserir(){
 		printf("1 - Espécie\n");
 		printf("2 - Indivíduo\n");
 		printf("3 - Captura\n");
+		printf("4 - Importar Capturas\n");
 		printf("0 - Voltar\n");
 		printf("Opção: ");
 		char option[BUFFER_SZ];

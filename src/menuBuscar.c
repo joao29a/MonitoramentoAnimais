@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hdr/menuBuscar.h"
+#include "hdr/menuImportar.h"
 #include "hdr/especie.h"
 #include "hdr/individuo.h"
 #include "hdr/captura.h"
@@ -30,14 +31,22 @@ void opcaoBuscar(int escolha){
 			system("clear");
 			break;
 		case 3:
-			buscarCaptura();
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Buscar Captura ###\n");
+			inserirDado("ID: ",id);
+			imprimirDado(buscarCaptura(id),captura,"Captura");
+			printf("\nBusca concluída, pressione enter para voltar...");
+			while (getchar()!='\n');
+			system("clear");
+			break;
+		case 4:
+			menuImportar();
 			break;
 		case 0:
 			printf("Voltando...\n");
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			//while (getchar()!='\n');
 			break;	
 	}
 }
@@ -52,6 +61,7 @@ void menuBuscar(){
 		printf("1 - Espécie\n");
 		printf("2 - Indivíduo\n");
 		printf("3 - Captura\n");
+		printf("4 - Importar Capturas\n");
 		printf("0 - Voltar\n");
 		printf("Opção: ");
 		char option[BUFFER_SZ];

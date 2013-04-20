@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "hdr/functions.h"
+#include "hdr/captura.h"
 
 void inserirDado(char *tipo, char *dado){
 	printf("%s",tipo);
@@ -58,6 +59,7 @@ void verificarIndividuo(){
 void verificarCaptura(){
 	verificarPasta(pastaCaptura);
 	verificarArquivo(captura);
+	verificarArquivo(capturaPos);
 }
 
 int verificar_qtd_especie(){
@@ -103,4 +105,79 @@ int verificar_individuo_removido(){
 	}
 	fclose(arquivo);
 	return somaPos;
+}
+
+
+void salvarPos(FILE *arquivo, int pos){
+	fprintf(arquivo,"%d #INSERIDO#\n",pos);
+}
+
+void escreverCaptura(FILE *arquivo, FILE *arquivoPos){
+	int i;
+	int size;
+	int pos = ftell(arquivo);
+	int total = 0;
+	for (i = inicio; i < posVet; i++){
+		size = strlen(capturaReg[i].idCaptura);
+		total+=size;
+		fwrite(capturaReg[i].idCaptura,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+		
+		size = strlen(capturaReg[i].idIndividuo);
+		total+=size;
+		fwrite(capturaReg[i].idIndividuo,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+
+		size = strlen(capturaReg[i].comprimento);
+		total+=size;
+		fwrite(capturaReg[i].comprimento,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+
+		size = strlen(capturaReg[i].largura);
+		total+=size;
+		fwrite(capturaReg[i].largura,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+
+		size = strlen(capturaReg[i].peso);
+		total+=size;
+		fwrite(capturaReg[i].peso,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+
+		size = strlen(capturaReg[i].data);
+		total+=size;
+		fwrite(capturaReg[i].data,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+
+		size = strlen(capturaReg[i].local);
+		total+=size;
+		fwrite(capturaReg[i].local,size,1,arquivo);
+		
+		fwrite("\n#\n",3,1,arquivo);
+		total+=3;
+
+		salvarPos(arquivoPos,pos);
+		pos+=total;
+		total = 0;
+	}
+	inicio = posVet;
+	fclose(arquivo);
+	fclose(arquivoPos);
+}
+
+void anexarFinal(){
+	FILE *arquivo = abrirArquivo(captura,"ab");
+	FILE *arquivoPos = abrirArquivo(capturaPos,"a+");
+	escreverCaptura(arquivo,arquivoPos);
+}
+
+void reescreverCaptura(){
+	FILE *arquivo = abrirArquivo(captura,"wb");
+	FILE *arquivoPos = abrirArquivo(capturaPos,"w");
+	escreverCaptura(arquivo,arquivoPos);
 }

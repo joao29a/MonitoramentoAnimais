@@ -17,6 +17,7 @@
 
 #define pastaCaptura arquivos"CapturaArq/"
 #define captura pastaCaptura"captura.dat"
+#define capturaPos pastaCaptura"capturaPos.txt"
 
 void inserirDado(char *tipo, char *dado);
 
@@ -39,5 +40,13 @@ int verificar_qtd_especie();
 int verificar_qtd_individuo();
 
 int verificar_individuo_removido();
+
+void salvarPos(FILE *arquivo, int pos);
+
+void escreverCaptura(FILE *arquivo, FILE *arquivoPos);
+
+void anexarFinal();
+
+void reescreverCaptura();
 
 #endif
