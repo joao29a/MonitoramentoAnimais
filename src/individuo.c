@@ -14,6 +14,7 @@ void inserirIndividuo(){
 	do{
 		inserirDado("ID Indivíduo: ",idIndividuo);
 		verificarId = buscarIndividuo(idIndividuo);
+		insiraDiferente(verificarId);
 	} while (verificarId!=-1);
 
 	int idNumberInd = atoi (idIndividuo);
@@ -22,6 +23,7 @@ void inserirIndividuo(){
 	do{
 		inserirDado("ID Espécie: ",idEspecie);
 		verificarId = buscarEspecie(idEspecie);
+		insiraIgual(verificarId);
 	} while (verificarId==-1);
 
 	int idNumberEsp = atoi(idEspecie);

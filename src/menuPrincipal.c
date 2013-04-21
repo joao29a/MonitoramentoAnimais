@@ -6,6 +6,7 @@
 #include "hdr/menuInserir.h"
 #include "hdr/menuBuscar.h"
 #include "hdr/menuRemover.h"
+#include "hdr/menuConsultar.h"
 #include "hdr/functions.h"
 
 void opcaoPrincipal(int escolha){
@@ -23,12 +24,14 @@ void opcaoPrincipal(int escolha){
 		case 4:
 			menuImportar();
 			break;
+		case 5:
+			menuConsultar();
+			break;
 		case 0:
 			printf("Saindo...\n");
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			//while (getchar()!='\n');
 			break;	
 	}
 }
@@ -43,6 +46,7 @@ void menuPrincipal(){
 		printf("2 - Buscar\n");
 		printf("3 - Remover\n");
 		printf("4 - Importar Capturas\n");
+		printf("5 - Consultar\n");
 		printf("0 - Sair\n");
 		printf("Opção: ");
 		char option[BUFFER_SZ];

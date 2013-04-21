@@ -29,6 +29,10 @@ void verificarArquivo(char *txt);
 
 void verificarPasta(char* pastaNome);
 
+void insiraIgual(int id);
+
+void insiraDiferente(int id);
+
 void verificarEspecie();
 
 void verificarIndividuo();

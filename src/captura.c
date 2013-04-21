@@ -16,6 +16,7 @@ void inserirCaptura(){
 	do{
 		inserirDado("ID Captura: ",capturaReg[posVet].idCaptura);
 		verificarCap = buscarCaptura(capturaReg[posVet].idCaptura);
+		insiraDiferente(verificarCap);
 	} while (verificarCap!=-1);
 
 	int idCap = atoi(capturaReg[posVet].idCaptura);
@@ -24,6 +25,7 @@ void inserirCaptura(){
 	do{
 		inserirDado("ID Indivíduo: ",capturaReg[posVet].idIndividuo);
 		verificarInd = buscarIndividuo(capturaReg[posVet].idIndividuo);
+		insiraIgual(verificarInd);
 	} while (verificarInd==-1);
 
 	int idInd = atoi(capturaReg[posVet].idIndividuo);

@@ -32,6 +32,16 @@ FILE* abrirArquivo(char *nomeArquivo, char *tipo){
 	return fopen(nomeArquivo,tipo);
 }
 
+void insiraDiferente(int id){
+	if (id != -1)
+		printf("ID já inserido...\n");
+}
+
+void insiraIgual(int id){
+	if (id == -1)
+		printf("Insira um ID existente...\n");
+}
+
 void verificarArquivo(char *txt){
 	FILE *arquivo=fopen(txt,"r");
 	if (arquivo==NULL)
@@ -117,49 +127,66 @@ void escreverCaptura(FILE *arquivo, FILE *arquivoPos){
 	int size;
 	int pos = ftell(arquivo);
 	int total = 0;
+	char buffer[BUFFER_SZ];
 	for (i = inicio; i < posVet; i++){
-		size = strlen(capturaReg[i].idCaptura);
+		strcpy(buffer,"id captura = ");
+		strcat(buffer,capturaReg[i].idCaptura);
+		size = strlen(buffer);
 		total+=size;
-		fwrite(capturaReg[i].idCaptura,size,1,arquivo);
+		fwrite(buffer,size,1,arquivo);
 		fwrite("\n",1,1,arquivo);
 		total+=1;
 		
-		size = strlen(capturaReg[i].idIndividuo);
+		strcpy(buffer,"id individuo = ");
+		strcat(buffer,capturaReg[i].idIndividuo);
+		size = strlen(buffer);
 		total+=size;
-		fwrite(capturaReg[i].idIndividuo,size,1,arquivo);
+		fwrite(buffer,size,1,arquivo);
 		fwrite("\n",1,1,arquivo);
 		total+=1;
 
-		size = strlen(capturaReg[i].comprimento);
+		strcpy(buffer,"comprimento = ");
+		strcat(buffer,capturaReg[i].comprimento);
+		size = strlen(buffer);
 		total+=size;
-		fwrite(capturaReg[i].comprimento,size,1,arquivo);
+		fwrite(buffer,size,1,arquivo);
 		fwrite("\n",1,1,arquivo);
 		total+=1;
 
-		size = strlen(capturaReg[i].largura);
+		strcpy(buffer,"largura = ");
+		strcat(buffer,capturaReg[i].largura);
+		size = strlen(buffer);
 		total+=size;
-		fwrite(capturaReg[i].largura,size,1,arquivo);
+		fwrite(buffer,size,1,arquivo);
 		fwrite("\n",1,1,arquivo);
 		total+=1;
 
-		size = strlen(capturaReg[i].peso);
+		strcpy(buffer,"peso = ");
+		strcat(buffer,capturaReg[i].peso);
+		size = strlen(buffer);
 		total+=size;
-		fwrite(capturaReg[i].peso,size,1,arquivo);
+		fwrite(buffer,size,1,arquivo);
 		fwrite("\n",1,1,arquivo);
 		total+=1;
-
-		size = strlen(capturaReg[i].data);
-		total+=size;
-		fwrite(capturaReg[i].data,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-
-		size = strlen(capturaReg[i].local);
-		total+=size;
-		fwrite(capturaReg[i].local,size,1,arquivo);
 		
-		fwrite("\n#\n",3,1,arquivo);
-		total+=3;
+		strcpy(buffer,"data = ");
+		strcat(buffer,capturaReg[i].data);
+		size = strlen(buffer);
+		total+=size;
+		fwrite(buffer,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+		
+		strcpy(buffer,"local = ");
+		strcat(buffer,capturaReg[i].local);
+		size = strlen(buffer);
+		total+=size;
+		fwrite(buffer,size,1,arquivo);
+		fwrite("\n",1,1,arquivo);
+		total+=1;
+
+		fwrite("#\n",2,1,arquivo);
+		total+=2;
 
 		salvarPos(arquivoPos,pos);
 		pos+=total;

@@ -8,17 +8,28 @@ void opcaoImportar(int escolha){
 	system("clear");
 	switch(escolha){
 		case 1:
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Importar Captura ###\n");
+			printf("Anexando...");
 			anexarFinal();
+			printf(" Finalizado.");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 2:
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Importar Captura ###\n");
+			printf("Reescrevendo...");
 			reescreverCaptura();
+			printf(" Finalizado.");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 0:
 			printf("Voltando...\n");
 			break;
 		default:
 			printf("Opção inválida, insira novamente...\n");
-			//while (getchar()!='\n');
 			break;	
 	}
 }

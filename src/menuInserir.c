@@ -37,6 +37,7 @@ void opcaoInserir(int escolha){
 				inserirCaptura();
 			else
 				printf("Insira indivíduo antes para adicionar alguma captura...");
+			printf("\nDados inseridos com sucesso, pressione enter para continuar...");
 			while (getchar()!='\n');
 			system("clear");
 			break;

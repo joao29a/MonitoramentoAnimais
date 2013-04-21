@@ -14,6 +14,7 @@ void inserirEspecie(){
 	do{
 		inserirDado("ID: ",id);
 		verificarId = buscarEspecie(id);
+		insiraDiferente(verificarId);
 	}while (verificarId!=-1);
 
 	int idNumber = atoi(id);
