@@ -53,6 +53,8 @@ void listarEspecie(){
 		insiraIgual(verificarId);
 	} while (verificarId == -1);
 
+	
+	verificarId = atoi(id);
 	char linha[BUFFER_SZ];
 
 	FILE *arquivo = abrirArquivo(individuo,"r");
@@ -68,8 +70,9 @@ void listarEspecie(){
 			fgets(linha,BUFFER_SZ,arquivo);
 			int idEsp;
 			sscanf(linha,"%*[^0-9] %d",&idEsp);
-			if (verificarId == idEsp)
+			if (verificarId == idEsp){
 				vetorId[tamanho++]=idArq;
+			}
 		}
 		somaPos+=TAM_REG;
 		fseek(arquivo,somaPos,SEEK_SET);
