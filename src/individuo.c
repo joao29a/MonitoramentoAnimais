@@ -41,7 +41,7 @@ void inserirIndividuo(){
 	} while (strlen(sexo) > 1 || !encontrou);
 
 	FILE *arquivo = abrirArquivo(individuo,"r+");
-	fseek(arquivo,verificar_individuo_removido(),SEEK_SET);
+	fseek(arquivo,verificar_individuo_removido(arquivo),SEEK_SET);
 	
 	char dados[BUFFER_SZ];
 	strcpy(dados,"id indivíduo = ");

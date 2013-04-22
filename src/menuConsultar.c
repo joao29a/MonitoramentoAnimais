@@ -3,16 +3,33 @@
 #include <string.h>
 #include "hdr/menuConsultar.h"
 #include "hdr/functions.h"
+#include "hdr/consultas.h"
 
 
 void opcaoHistorico(int escolha){
 	system("clear");
 	switch(escolha){
 		case 1:
-			//listarIndividuo();
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Histórico de Monitoramento - Individuo ###\n");
+			if (verificar_qtd_individuo())
+				listarIndividuo();
+			else
+				printf("Nenhum indivíduo inserido...\n");
+			printf("\nPressione enter para voltar...");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 2:
-			//listarEspecie();
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Histórico de Monitoramento - Espécie ###\n");
+			if (verificar_qtd_especie())
+				listarEspecie();
+			else
+				printf("Nenhuma espécie inserida...\n");
+			printf("\nPressione enter para voltar...");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 0:
 			printf("Voltando...\n");
@@ -48,7 +65,15 @@ void opcaoConsultar(int escolha){
 			historicoMonitoramento();
 			break;
 		case 2:
-			//ultimaCaptura();
+			printf("Sistema de informação para monitoramento de animais silvestres.\n");
+			printf("### Última Captura - Indivíduo ###\n");
+			if (verificar_qtd_individuo())
+				ultimaCaptura();
+			else
+				printf("Nenhum indivíduo inserido...\n");
+			printf("\nPressione enter para voltar...");
+			while (getchar()!='\n');
+			system("clear");
 			break;
 		case 0:
 			printf("Voltando...\n");

@@ -1,5 +1,5 @@
 CC=gcc
-WFLAGS=-g -Wall -Wextra
+WFLAGS=-g -Wall -Wextra -std=c99
 CFLAG=-c
 OFLAGS=-o
 DIR_src=src/

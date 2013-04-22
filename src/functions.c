@@ -100,20 +100,17 @@ int verificar_qtd_individuo(){
 	return 0;
 }
 
-int verificar_individuo_removido(){
-	FILE *arquivo = abrirArquivo(individuo,"r");
+int verificar_individuo_removido(FILE *arquivo){
 	int somaPos = 0;
 	char linha[BUFFER_SZ];
 	while (fgets(linha,BUFFER_SZ,arquivo)!=NULL){
 		int id = -1;
 		sscanf(linha,"%*[^0-9] %d",&id);
 		if (id == -1)
-			fclose(arquivo);
 			return somaPos;
 		somaPos+=TAM_REG;
 		fseek(arquivo,somaPos,SEEK_SET);
 	}
-	fclose(arquivo);
 	return somaPos;
 }
 

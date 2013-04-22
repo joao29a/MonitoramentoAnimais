@@ -69,7 +69,8 @@ int buscarCaptura(char *id){
 		sscanf(linha,"%d %s",&pos,removido);
 		fseek(arquivo,pos,SEEK_SET);
 		fgets(linha,BUFFER_SZ,arquivo);
-		int idArquivo = atoi(linha);
+		int idArquivo;
+		sscanf(linha,"%*[^0-9] %d",&idArquivo);
 		if (idNumber==idArquivo && strcmp(removido,"#REMOVIDO#")!=0){
 			fclose(arquivo);
 			fclose(arquivoPos);

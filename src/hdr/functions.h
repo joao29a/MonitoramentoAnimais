@@ -43,7 +43,7 @@ int verificar_qtd_especie();
 
 int verificar_qtd_individuo();
 
-int verificar_individuo_removido();
+int verificar_individuo_removido(FILE *arquivo);
 
 void salvarPos(FILE *arquivo, int pos);
 
