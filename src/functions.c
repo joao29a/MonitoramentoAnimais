@@ -138,7 +138,6 @@ void anexarFinal(){
 				break;
 			}
 		}
-		pos -= 10;
 		fseek(arquivoPos,0,SEEK_SET);
 		escreverCapturaAppend(arquivo,arquivoPos,pos);
 	} else {
