@@ -48,9 +48,7 @@ int verificar_individuo_removido(FILE *arquivo);
 
 void salvarPos(FILE *arquivo, int pos);
 
-void escreverCapturaAppend(FILE *arquivo, FILE *arquivoPos, int pos);
-
-void escreverCaptura(FILE *arquivo, FILE *arquivoPos, int pos);
+void escreverCaptura(FILE *arquivo, FILE *arquivoPos);
 
 void anexarFinal();
 
