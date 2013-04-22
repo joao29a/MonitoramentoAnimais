@@ -5,57 +5,66 @@
 #include "hdr/individuo.h"
 #include "hdr/functions.h"
 
-int posVet = 0;
-int inicio = 0;
-Captura capturaReg[BUFFER_SZ];
-
 void inserirCaptura(){
+	char idCaptura[BUFFER_SZ];
+	char idIndividuo[BUFFER_SZ];
+	char comprimento[BUFFER_SZ];
+	char largura[BUFFER_SZ];
+	char peso[BUFFER_SZ];
+	char data[BUFFER_SZ];
+	char local[BUFFER_SZ];
+
 	int verificarCap;
 	int verificarInd;
 
 	do{
-		inserirDado("ID Captura: ",capturaReg[posVet].idCaptura);
-		verificarCap = buscarCaptura(capturaReg[posVet].idCaptura);
+		inserirDado("ID Captura: ",idCaptura);
+		verificarCap = buscarCaptura(idCaptura);
 		insiraDiferente(verificarCap);
 	} while (verificarCap!=-1);
 
-	int idCap = atoi(capturaReg[posVet].idCaptura);
-	sprintf(capturaReg[posVet].idCaptura,"%d",idCap);
+	int idCap = atoi(idCaptura);
 
 	do{
-		inserirDado("ID Indivíduo: ",capturaReg[posVet].idIndividuo);
-		verificarInd = buscarIndividuo(capturaReg[posVet].idIndividuo);
+		inserirDado("ID Indivíduo: ",idIndividuo);
+		verificarInd = buscarIndividuo(idIndividuo);
 		insiraIgual(verificarInd);
 	} while (verificarInd==-1);
 
-	int idInd = atoi(capturaReg[posVet].idIndividuo);
-	sprintf(capturaReg[posVet].idIndividuo,"%d",idInd);
+	int idInd = atoi(idIndividuo);
 
 	do{
-		inserirDado("Comprimento : ",capturaReg[posVet].comprimento);
-	} while (atoi(capturaReg[posVet].comprimento)==0);
+		inserirDado("Comprimento: ",comprimento);
+	} while (atoi(comprimento)==0);
 
-	int compr = atoi(capturaReg[posVet].comprimento);
-	sprintf(capturaReg[posVet].comprimento,"%d",compr);
-
-	do{
-		inserirDado("Largura: ",capturaReg[posVet].largura);
-	} while (atoi(capturaReg[posVet].largura)==0);
-
-	int larg = atoi(capturaReg[posVet].largura);
-	sprintf(capturaReg[posVet].largura,"%d",larg);
+	int compr = atoi(comprimento);
 
 	do{
-		inserirDado("Peso: ",capturaReg[posVet].peso);
-	} while (atoi(capturaReg[posVet].peso)==0);
+		inserirDado("Largura: ",largura);
+	} while (atoi(largura)==0);
 
-	int peso = atoi(capturaReg[posVet].peso);
-	sprintf(capturaReg[posVet].peso,"%d",peso);
+	int larg = atoi(largura);
 
-	inserirDado("Data: ",capturaReg[posVet].data);
-	inserirDado("Local: ",capturaReg[posVet].local);
+	do{
+		inserirDado("Peso: ",peso);
+	} while (atoi(peso)==0);
 
-	posVet++;
+	int pesokg = atoi(peso);
+
+	inserirDado("Data: ",data);
+	inserirDado("Local: ",local);
+
+	FILE *arquivo = abrirArquivo(captura,"r+");
+	fseek(arquivo,0,SEEK_END);
+	int pos = ftell(arquivo);
+	fprintf(arquivo,"id captura = %d\nid individuo = %d\n",idCap,idInd);
+	fprintf(arquivo,"comprimento = %d\nlargura = %d\n",compr,larg);
+	fprintf(arquivo,"peso = %d\ndata = %s\nlocal = %s\n#\n",pesokg,data,local);
+	fclose(arquivo);
+
+	FILE *arquivoPos = abrirArquivo(capturaPos,"a+");
+	salvarPos(arquivoPos,pos);
+	fclose(arquivoPos);
 }
 
 int buscarCaptura(char *id){

@@ -70,6 +70,7 @@ void verificarCaptura(){
 	verificarPasta(pastaCaptura);
 	verificarArquivo(captura);
 	verificarArquivo(capturaPos);
+	verificarArquivo(capturatxt);
 }
 
 int verificar_qtd_especie(){
@@ -119,89 +120,88 @@ void salvarPos(FILE *arquivo, int pos){
 	fprintf(arquivo,"%d #INSERIDO#\n",pos);
 }
 
-void escreverCaptura(FILE *arquivo, FILE *arquivoPos){
-	int i;
-	int size;
-	int pos = ftell(arquivo);
-	int total = 0;
-	char buffer[BUFFER_SZ];
-	for (i = inicio; i < posVet; i++){
-		strcpy(buffer,"id captura = ");
-		strcat(buffer,capturaReg[i].idCaptura);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-		
-		strcpy(buffer,"id individuo = ");
-		strcat(buffer,capturaReg[i].idIndividuo);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-
-		strcpy(buffer,"comprimento = ");
-		strcat(buffer,capturaReg[i].comprimento);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-
-		strcpy(buffer,"largura = ");
-		strcat(buffer,capturaReg[i].largura);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-
-		strcpy(buffer,"peso = ");
-		strcat(buffer,capturaReg[i].peso);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-		
-		strcpy(buffer,"data = ");
-		strcat(buffer,capturaReg[i].data);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-		
-		strcpy(buffer,"local = ");
-		strcat(buffer,capturaReg[i].local);
-		size = strlen(buffer);
-		total+=size;
-		fwrite(buffer,size,1,arquivo);
-		fwrite("\n",1,1,arquivo);
-		total+=1;
-
-		fwrite("#\n",2,1,arquivo);
-		total+=2;
-
-		salvarPos(arquivoPos,pos);
-		pos+=total;
-		total = 0;
-	}
-	inicio = posVet;
-	fclose(arquivo);
-	fclose(arquivoPos);
-}
-
 void anexarFinal(){
 	FILE *arquivo = abrirArquivo(captura,"ab");
-	FILE *arquivoPos = abrirArquivo(capturaPos,"a+");
-	escreverCaptura(arquivo,arquivoPos);
+	FILE *arquivoPos = abrirArquivo(capturaPos,"r+");
+	char buffer[BUFFER_SZ];
+	int pos = 0;
+	int qtd = 0;
+	if (fgets(buffer,BUFFER_SZ,arquivoPos)!=NULL){
+		FILE *arquivotxt = abrirArquivo(capturatxt,"r");
+		while (fgets(buffer,BUFFER_SZ,arquivoPos)!=NULL){
+			sscanf(buffer,"%d",&qtd);
+			pos = qtd;
+		}
+		while (fgets(buffer,BUFFER_SZ,arquivotxt)!=NULL){
+			if (strcmp(buffer,"#\n")==0){
+				pos += ftell(arquivotxt);
+				break;
+			}
+		}
+		pos -= 10;
+		fseek(arquivoPos,0,SEEK_SET);
+		escreverCapturaAppend(arquivo,arquivoPos,pos);
+	} else {
+		escreverCaptura(arquivo,arquivoPos,pos);
+	}
+}
+
+void escreverCapturaAppend(FILE *arquivo, FILE* arquivoPos, int pos){
+	FILE *arquivotxt = abrirArquivo(capturatxt,"r");
+	char buffer[BUFFER_SZ];
+	int inicio = 1;
+	while (fgets(buffer,BUFFER_SZ,arquivotxt)!=NULL){
+		char id[BUFFER_SZ];
+		sscanf(buffer,"%[^=]",id);
+		if (strcmp(id,"id da captura ")==0){
+			if (!inicio){
+				char teste[BUFFER_SZ];
+				while(fgets(teste,BUFFER_SZ,arquivoPos)!=NULL);
+				int idfinal;
+				sscanf(teste,"%d",&idfinal);
+				pos+=idfinal;
+				salvarPos(arquivoPos,pos);
+			}
+			else {
+				fseek(arquivoPos,0,SEEK_END);
+				salvarPos(arquivoPos,pos);
+				inicio = 0;
+				fseek(arquivoPos,0,SEEK_SET);
+			}
+		}
+		fprintf(arquivo,"%s",buffer);
+		if (strcmp(buffer,"#\n")==0){
+			pos = ftell(arquivotxt);
+		}
+	}
+	fclose(arquivo);
+	fclose(arquivoPos);
+	fclose(arquivotxt);
 }
 
 void reescreverCaptura(){
 	FILE *arquivo = abrirArquivo(captura,"wb");
 	FILE *arquivoPos = abrirArquivo(capturaPos,"w");
-	escreverCaptura(arquivo,arquivoPos);
+	int pos = 0;
+	escreverCaptura(arquivo,arquivoPos,pos);
+}
+
+void escreverCaptura(FILE *arquivo, FILE *arquivoPos, int pos){
+	FILE *arquivotxt = abrirArquivo(capturatxt,"r");
+	char buffer[BUFFER_SZ];
+	while (fgets(buffer,BUFFER_SZ,arquivotxt)!=NULL){
+		char id[BUFFER_SZ];
+		sscanf(buffer,"%[^=]",id);
+		if (strcmp(id,"id da captura ")==0){
+			salvarPos(arquivoPos,pos);
+			
+		}
+		fprintf(arquivo,"%s",buffer);
+		if (strcmp(buffer,"#\n")==0){
+			pos = ftell(arquivotxt);
+		}
+	}
+	fclose(arquivo);
+	fclose(arquivoPos);
+	fclose(arquivotxt);
 }

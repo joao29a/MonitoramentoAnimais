@@ -36,7 +36,7 @@ void inserirEspecie(){
 
 
 int buscarEspecie(char *id){
-	int idNumber = atoi(id);
+    	int idNumber = atoi(id);
 	FILE *arquivo = abrirArquivo(especie,"r");
 	FILE *arquivoPos = abrirArquivo(especiePos,"r");
 	char linha[BUFFER_SZ];
